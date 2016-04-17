@@ -5,8 +5,46 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TotaraEditor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        Title="Totara Editor" Height="350" Width="525" Icon="Resources/Totara_logo.png" WindowStyle="ToolWindow">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="68"/>
+            <RowDefinition Height="21"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="32"/>
+        </Grid.RowDefinitions>
+
+        
+        <!--header-->
+        <WrapPanel Grid.Row="0" Background="#FEE000" FlowDirection="LeftToRight">
+            <Image Height="68" Width="68" Source="Resources/Totara_logo.png" Stretch="Fill" />
+        </WrapPanel>
+
+        <!--menu bar-->
+        <WrapPanel  Grid.Row="1" Background="Black">
+            <Menu>
+                <MenuItem Header="File" >
+                    <MenuItem Header="New"></MenuItem>
+                    <MenuItem Header="Open"></MenuItem>
+                    <MenuItem Header="Save"></MenuItem>
+                    <MenuItem Header="Save As"></MenuItem>
+                    <MenuItem Header="Delete"></MenuItem>
+                    <MenuItem Header="Quit"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Format" ></MenuItem>
+                <MenuItem Header="About" ></MenuItem>
+            </Menu>
+        </WrapPanel>
+
+        <!--text-->
+        <TextBox  Grid.Row="2">
+            fr
+        </TextBox>
+
+        <!--footer-->
+        <WrapPanel  Grid.Row="3" Background="#03A9DD" >
+            <Label  Foreground="AliceBlue" Content="Powered by Vincent, Copyright reserved 2016."/>
+        </WrapPanel>
         
     </Grid>
 </Window>
