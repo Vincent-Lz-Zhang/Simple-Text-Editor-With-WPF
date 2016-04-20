@@ -5,13 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TotaraEditor"
         mc:Ignorable="d"
-        Title="Totara Editor" Height="350" Width="525" Icon="Resources/Totara_logo.png" WindowStyle="ToolWindow">
+        Title="Untitled - Totara Editor" Height="350" Width="525" Icon="Resources/Totara_logo.png" WindowStyle="ToolWindow">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed" />
+        <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed" />
+    </Window.CommandBindings>
+
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="68"/>
             <RowDefinition Height="21"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="32"/>
+            <RowDefinition Height="62"/>
         </Grid.RowDefinitions>
 
         
@@ -21,30 +26,35 @@
         </WrapPanel>
 
         <!--menu bar-->
-        <WrapPanel  Grid.Row="1" Background="Black">
-            <Menu>
+        <DockPanel  Grid.Row="1" Background="Black">
+            <Menu DockPanel.Dock="Left">
                 <MenuItem Header="File" >
                     <MenuItem Header="New"></MenuItem>
-                    <MenuItem Header="Open"></MenuItem>
-                    <MenuItem Header="Save"></MenuItem>
+                    <MenuItem Header="Open" Command="ApplicationCommands.Open"></MenuItem>
+                    <MenuItem Header="Save" Command="ApplicationCommands.Save"></MenuItem>
                     <MenuItem Header="Save As"></MenuItem>
+                    <Separator></Separator>
                     <MenuItem Header="Delete"></MenuItem>
                     <MenuItem Header="Quit"></MenuItem>
                 </MenuItem>
-                <MenuItem Header="Format" ></MenuItem>
+                <MenuItem Header="Format" Click="Format_MenuItem_Click" ></MenuItem>
                 <MenuItem Header="About" ></MenuItem>
             </Menu>
-        </WrapPanel>
 
+            <Label x:Name="status" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" Margin="0, -5, 0, 0">here</Label>
+        </DockPanel>
+
+        
         <!--text-->
-        <TextBox  Grid.Row="2">
-            fr
+        <TextBox x:Name="editor"  Grid.Row="2" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" >
+            
         </TextBox>
 
         <!--footer-->
         <WrapPanel  Grid.Row="3" Background="#03A9DD" >
-            <Label  Foreground="AliceBlue" Content="Powered by Vincent, Copyright reserved 2016."/>
+            <Slider Maximum="100" />
+
         </WrapPanel>
-        
+
     </Grid>
 </Window>
