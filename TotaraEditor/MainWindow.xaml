@@ -8,7 +8,8 @@
         Title="Untitled - Totara Editor" Height="350" Width="525" Icon="Resources/Totara_logo.png" WindowStyle="ToolWindow">
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed" />
-        <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed" />
+        <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed" CanExecute="Save_CanExecute"/>
+        <CommandBinding Command="ApplicationCommands.SaveAs" Executed="SaveAs_Executed" CanExecute="SaveAs_CanExecute" />
     </Window.CommandBindings>
 
     <Grid >
@@ -32,7 +33,7 @@
                     <MenuItem Header="New"></MenuItem>
                     <MenuItem Header="Open" Command="ApplicationCommands.Open"></MenuItem>
                     <MenuItem Header="Save" Command="ApplicationCommands.Save"></MenuItem>
-                    <MenuItem Header="Save As"></MenuItem>
+                    <MenuItem Header="Save As" Command="ApplicationCommands.SaveAs"></MenuItem>
                     <Separator></Separator>
                     <MenuItem Header="Delete"></MenuItem>
                     <MenuItem Header="Quit"></MenuItem>
@@ -46,7 +47,7 @@
 
         
         <!--text-->
-        <TextBox x:Name="editor"  Grid.Row="2" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" >
+        <TextBox x:Name="editor"  Grid.Row="2" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" TextChanged="editor_TextChanged">
             
         </TextBox>
 
