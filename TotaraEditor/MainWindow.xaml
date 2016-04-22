@@ -51,9 +51,9 @@
             
         </TextBox>
 
-        <!--footer-->
-        <WrapPanel  Grid.Row="3" Background="#03A9DD" >
-            <Slider Maximum="100" />
+        <!--footer#03A9DD-->
+        <WrapPanel  Grid.Row="3" Background="Black" >
+            <Slider Maximum="100" Width="400" />
 
         </WrapPanel>
 
