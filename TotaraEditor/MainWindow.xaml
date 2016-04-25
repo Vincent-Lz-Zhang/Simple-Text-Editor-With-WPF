@@ -28,15 +28,37 @@
 
         <!--menu bar-->
         <DockPanel  Grid.Row="1" Background="Black">
-            <Menu DockPanel.Dock="Left">
-                <MenuItem Header="File" >
-                    <MenuItem Header="New"></MenuItem>
-                    <MenuItem Header="Open" Command="ApplicationCommands.Open"></MenuItem>
-                    <MenuItem Header="Save" Command="ApplicationCommands.Save"></MenuItem>
-                    <MenuItem Header="Save As" Command="ApplicationCommands.SaveAs"></MenuItem>
-                    <Separator></Separator>
-                    <MenuItem Header="Delete"></MenuItem>
-                    <MenuItem Header="Quit"></MenuItem>
+            <Menu DockPanel.Dock="Left"  Background="#FF181818" Foreground="#FFABABAB" >
+                <Menu.Resources>
+                    <Style x:Key="{x:Type MenuItem}" >
+                        <Style.Setters>
+                            <Setter Property="MenuItem.Background" Value="#FF181818" />
+                            <Setter Property="MenuItem.Foreground" Value="#FFABABAB" />
+                        </Style.Setters>
+                        <Style.Triggers>
+                            <Trigger Property="MenuItem.IsMouseOver" Value="True">
+                                <Setter Property="MenuItem.Background" Value="#FF13C333" />
+                                <Setter Property="MenuItem.Foreground" Value="Red" />
+                            </Trigger>
+                            <!--<Trigger Property="MenuItem.IsFocused" Value="True">
+                                <Setter Property="MenuItem.Background" Value="#FF13C333" />
+                                <Setter Property="MenuItem.Foreground" Value="DarkRed" />
+                            </Trigger>-->
+                        </Style.Triggers>
+                    </Style>
+                </Menu.Resources>
+                <MenuItem Header="File">
+                    <MenuItem Header="New">
+                        <MenuItem.Resources>
+                            
+                        </MenuItem.Resources>
+                    </MenuItem>
+                    <MenuItem Background="#FF181818" Foreground="#FFABABAB" Header="Open" Command="ApplicationCommands.Open"></MenuItem>
+                    <MenuItem Background="#FF181818" Foreground="#FFABABAB" Header="Save" Command="ApplicationCommands.Save"></MenuItem>
+                    <MenuItem Background="#FF181818" Foreground="#FFABABAB" Header="Save As" Command="ApplicationCommands.SaveAs"></MenuItem>
+                    <Separator Background="#FF181818" Foreground="#FFABABAB"></Separator>
+                    <MenuItem Background="#FF181818" Foreground="#FFABABAB" Header="Delete"></MenuItem>
+                    <MenuItem Background="#FF181818" Foreground="#FFABABAB" Header="Quit"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Format" Click="Format_MenuItem_Click" ></MenuItem>
                 <MenuItem Header="About" ></MenuItem>
