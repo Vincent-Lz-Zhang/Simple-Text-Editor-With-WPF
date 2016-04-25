@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Xceed.Wpf.Toolkit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -161,8 +162,14 @@ namespace TotaraEditor
         {
 
             //editor.FontSize = 28;
-            editor.FontFamily = new FontFamily("Euphemia");
+            //editor.FontFamily = new FontFamily("Euphemia");
             //editor.Foreground = Brushes.GreenYellow;
+            var res = Xceed.Wpf.Toolkit.MessageBox.Show(
+"MsgConfirmDeleteSelectedRows",
+"MsgTltConfirm",
+MessageBoxButton.YesNoCancel,
+MessageBoxImage.None, MessageBoxResult.No, null);
+            Console.WriteLine("Res: " + res.ToString());
         }
 
         // other control event handlers
