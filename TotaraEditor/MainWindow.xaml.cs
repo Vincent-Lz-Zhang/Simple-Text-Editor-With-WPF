@@ -86,6 +86,107 @@ namespace TotaraEditor
         // event handlers of menu item
         private void Open_Executed(object sender, ExecutedRoutedEventArgs evt)//ExecutedRoutedEventArgs
         {
+            if (this.isContentUpdated)
+            {
+                var res = Xceed.Wpf.Toolkit.MessageBox.Show(    
+                        "You have a document unsaved, would you like to save it before you go somewhere else?", 
+                        "Bloody confirm dialog",
+                        MessageBoxButton.YesNoCancel,
+                        MessageBoxImage.None, 
+                        MessageBoxResult.Cancel, 
+                        null);
+                if ("Cancel" == res.ToString())
+                {
+                    // nothing
+                }
+                else if ("No" == res.ToString())
+                {
+                    this.OpenFileWithBrowser();
+                }
+                else if ("Yes" == res.ToString())
+                {
+                    this.Save_Executed(sender, evt);
+                }
+                else
+                {
+                    // throw exception
+                }
+            }
+            else
+            {
+                this.OpenFileWithBrowser();
+            }
+            
+        }
+
+        private void Save_CanExecute(object sender, CanExecuteRoutedEventArgs evt)
+        {
+            if (this.IsContentUpdated)
+            {
+                evt.CanExecute = true;
+            }
+            else
+            {
+                evt.CanExecute = false;
+            }
+        }
+
+        private void Save_Executed(object sender, ExecutedRoutedEventArgs evt)
+        {
+            if (!string.IsNullOrEmpty(this.CurrentFilePath))
+            {
+                this.OverwriteFile(this.CurrentFilePath, this.editor.Text);
+            }
+            else
+            {
+                this.SaveAs_Executed(sender, evt);
+            }
+
+        }
+
+        private void SaveAs_CanExecute(object sender, CanExecuteRoutedEventArgs evt)
+        {
+            if (string.IsNullOrEmpty(this.CurrentFilePath) && string.IsNullOrWhiteSpace(this.editor.Text))
+            {
+                evt.CanExecute = false;
+            }
+            else
+            {
+                evt.CanExecute = true;
+            }
+        }
+
+        private void SaveAs_Executed(object sender, ExecutedRoutedEventArgs evt)
+        {
+            this.WriteTextToNewFile();
+        }
+
+        private void Format_MenuItem_Click(object sender, RoutedEventArgs evt)
+        {
+
+            //editor.FontSize = 28;
+            //editor.FontFamily = new FontFamily("Euphemia");
+            //editor.Foreground = Brushes.GreenYellow;
+            var res = Xceed.Wpf.Toolkit.MessageBox.Show(
+"MsgConfirmDeleteSelectedRows",
+"MsgTltConfirm",
+MessageBoxButton.YesNoCancel,
+MessageBoxImage.None, MessageBoxResult.No, null);
+            Console.WriteLine("Res: " + res.ToString());
+        }
+
+        // other control event handlers
+        private void editor_TextChanged(object sender, TextChangedEventArgs evt)
+        {
+            Console.WriteLine("changed");
+            this.IsContentUpdated = true;
+        }
+
+
+
+        // helpers
+        private void OpenFileWithBrowser()
+        {
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.FileName = "";
             dlg.DefaultExt = ".txt";
@@ -105,6 +206,8 @@ namespace TotaraEditor
                             editor.Text = line;
                             // keep track of the opened file's path
                             this.CurrentFilePath = dlg.FileName;
+                            //
+                            this.IsContentUpdated = false;
                         }
                     }
                     catch (Exception exp)
@@ -115,73 +218,6 @@ namespace TotaraEditor
                 }
             }
         }
-
-        private void Save_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            if (this.IsContentUpdated)
-            {
-                e.CanExecute = true;
-            }
-            else
-            {
-                e.CanExecute = false;
-            }
-        }
-
-        private void Save_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(this.CurrentFilePath))
-            {
-                this.OverwriteFile(this.CurrentFilePath, this.editor.Text);
-            }
-            else
-            {
-                SaveAs_Executed(sender, e);
-            }
-
-        }
-
-        private void SaveAs_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            if (string.IsNullOrEmpty(this.CurrentFilePath) && string.IsNullOrWhiteSpace(this.editor.Text))
-            {
-                e.CanExecute = false;
-            }
-            else
-            {
-                e.CanExecute = true;
-            }
-        }
-
-        private void SaveAs_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            this.WriteTextToNewFile();
-        }
-
-        private void Format_MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
-            //editor.FontSize = 28;
-            //editor.FontFamily = new FontFamily("Euphemia");
-            //editor.Foreground = Brushes.GreenYellow;
-            var res = Xceed.Wpf.Toolkit.MessageBox.Show(
-"MsgConfirmDeleteSelectedRows",
-"MsgTltConfirm",
-MessageBoxButton.YesNoCancel,
-MessageBoxImage.None, MessageBoxResult.No, null);
-            Console.WriteLine("Res: " + res.ToString());
-        }
-
-        // other control event handlers
-        private void editor_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            Console.WriteLine("changed");
-            this.IsContentUpdated = true;
-        }
-
-
-
-        // helpers
 
         private void WriteTextToNewFile()
         {
@@ -195,6 +231,7 @@ MessageBoxImage.None, MessageBoxResult.No, null);
             if (true == result)
             {
                 this.OverwriteFile(dlg.FileName, this.editor.Text);
+                this.status.Content = "The file has been saved successfully.";
             }
         }
 
