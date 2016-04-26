@@ -7,9 +7,10 @@
         mc:Ignorable="d"
         Title="Untitled - Totara Editor" Height="350" Width="525" Icon="Resources/Totara_logo.png" WindowStyle="ToolWindow">
     <Window.CommandBindings>
-        <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed" />
+        <CommandBinding Command="ApplicationCommands.New" Executed="New_Executed" CanExecute="New_CanExecute"/>
+        <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed"/>
         <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed" CanExecute="Save_CanExecute"/>
-        <CommandBinding Command="ApplicationCommands.SaveAs" Executed="SaveAs_Executed" CanExecute="SaveAs_CanExecute" />
+        <CommandBinding Command="ApplicationCommands.SaveAs" Executed="SaveAs_Executed" CanExecute="SaveAs_CanExecute"/>
     </Window.CommandBindings>
 
     <Grid >
@@ -48,13 +49,9 @@
                     </Style>
                 </Menu.Resources>
                 <MenuItem Header="File">
-                    <MenuItem Header="New">
-                        <MenuItem.Resources>
-                            
-                        </MenuItem.Resources>
-                    </MenuItem>
-                    <MenuItem Background="#FF181818" Foreground="#FFABABAB" Header="Open" Command="ApplicationCommands.Open"></MenuItem>
-                    <MenuItem Background="#FF181818" Foreground="#FFABABAB" Header="Save" Command="ApplicationCommands.Save"></MenuItem>
+                    <MenuItem Header="New" Command="ApplicationCommands.New"></MenuItem>
+                    <MenuItem Header="Open" Command="ApplicationCommands.Open"></MenuItem>
+                    <MenuItem Header="Save" Command="ApplicationCommands.Save"></MenuItem>
                     <MenuItem Background="#FF181818" Foreground="#FFABABAB" Header="Save As" Command="ApplicationCommands.SaveAs"></MenuItem>
                     <Separator Background="#FF181818" Foreground="#FFABABAB"></Separator>
                     <MenuItem Background="#FF181818" Foreground="#FFABABAB" Header="Delete"></MenuItem>
@@ -64,7 +61,7 @@
                 <MenuItem Header="About" ></MenuItem>
             </Menu>
 
-            <Label x:Name="status" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" Margin="0, -5, 0, 0">here</Label>
+            <Label x:Name="status" DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14" Margin="0, -5, 0, 0"></Label>
         </DockPanel>
 
         

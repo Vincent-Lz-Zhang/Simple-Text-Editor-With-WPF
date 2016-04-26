@@ -63,8 +63,14 @@ namespace TotaraEditor
                 {
                     this.currentFilePath = value;
                     // update title of the main window
-                    string name = this.currentFilePath.Substring(this.currentFilePath.LastIndexOf('\\') + 1);
-                    this.Title = name + this.appName;
+                    if (string.IsNullOrEmpty(this.currentFilePath))
+                    {
+                        this.Title = this.initFileName + this.appName;
+                    }
+                    else
+                    {
+                        this.Title = this.ExtractFileName(this.currentFilePath) + this.appName;
+                    }
                 }
             }
             get
@@ -82,6 +88,59 @@ namespace TotaraEditor
             InitializeComponent();
         }
 
+        private void New_CanExecute(object sender, CanExecuteRoutedEventArgs evt)
+        {
+            if (string.IsNullOrEmpty(this.CurrentFilePath) && !this.IsContentUpdated)
+            {
+                evt.CanExecute = false;
+            }
+            else
+            {
+                evt.CanExecute = true;
+            }
+        }
+
+        private void New_Executed(object sender, ExecutedRoutedEventArgs evt)
+        {
+            if (this.isContentUpdated)
+            {
+                var res = Xceed.Wpf.Toolkit.MessageBox.Show(
+                            "You have a document unsaved, would you like to save it before you go somewhere else?",
+                            "Confirm dialog",
+                            MessageBoxButton.YesNoCancel,
+                            MessageBoxImage.None,
+                            MessageBoxResult.Cancel,
+                            null
+                        );
+                if ("Cancel" == res.ToString())
+                {
+                    // nothing
+                }
+                else if ("No" == res.ToString())
+                {
+                    this.GoBackToInitialState();
+                }
+                else if ("Yes" == res.ToString())
+                {
+                    this.Save_Executed(sender, evt);
+                }
+                else
+                {
+                    ShowError("I believe something goes wrong. You may need to restart Totara Editor.");
+                }
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(this.CurrentFilePath))
+                {
+                    // nothing, should not reach here
+                }
+                else
+                {
+                    this.GoBackToInitialState();
+                }
+            }
+        }
 
         // event handlers of menu item
         private void Open_Executed(object sender, ExecutedRoutedEventArgs evt)//ExecutedRoutedEventArgs
@@ -89,12 +148,13 @@ namespace TotaraEditor
             if (this.isContentUpdated)
             {
                 var res = Xceed.Wpf.Toolkit.MessageBox.Show(    
-                        "You have a document unsaved, would you like to save it before you go somewhere else?", 
-                        "Bloody confirm dialog",
-                        MessageBoxButton.YesNoCancel,
-                        MessageBoxImage.None, 
-                        MessageBoxResult.Cancel, 
-                        null);
+                            "You have a document unsaved, would you like to save it before you go somewhere else?", 
+                            "Confirm dialog",
+                            MessageBoxButton.YesNoCancel,
+                            MessageBoxImage.None, 
+                            MessageBoxResult.Cancel, 
+                            null
+                        );
                 if ("Cancel" == res.ToString())
                 {
                     // nothing
@@ -109,7 +169,7 @@ namespace TotaraEditor
                 }
                 else
                 {
-                    // throw exception
+                    ShowError("I believe something goes wrong. You may need to restart Totara Editor.");
                 }
             }
             else
@@ -133,20 +193,23 @@ namespace TotaraEditor
 
         private void Save_Executed(object sender, ExecutedRoutedEventArgs evt)
         {
-            if (!string.IsNullOrEmpty(this.CurrentFilePath))
+            if (this.IsContentUpdated)
             {
-                this.OverwriteFile(this.CurrentFilePath, this.editor.Text);
+                if (!string.IsNullOrEmpty(this.CurrentFilePath))
+                {
+                    this.OverwriteFile(this.CurrentFilePath, this.editor.Text);
+                }
+                else
+                {
+                    this.SaveAs_Executed(sender, evt);
+                }
             }
-            else
-            {
-                this.SaveAs_Executed(sender, evt);
-            }
-
         }
 
         private void SaveAs_CanExecute(object sender, CanExecuteRoutedEventArgs evt)
         {
-            if (string.IsNullOrEmpty(this.CurrentFilePath) && string.IsNullOrWhiteSpace(this.editor.Text))
+            //if (string.IsNullOrEmpty(this.CurrentFilePath) && string.IsNullOrWhiteSpace(this.editor.Text))
+            if (string.IsNullOrEmpty(this.CurrentFilePath) && !this.IsContentUpdated)
             {
                 evt.CanExecute = false;
             }
@@ -158,7 +221,10 @@ namespace TotaraEditor
 
         private void SaveAs_Executed(object sender, ExecutedRoutedEventArgs evt)
         {
-            this.WriteTextToNewFile();
+            if (!string.IsNullOrEmpty(this.CurrentFilePath) || this.IsContentUpdated)
+            {
+                this.WriteTextToNewFile();
+            }
         }
 
         private void Format_MenuItem_Click(object sender, RoutedEventArgs evt)
@@ -178,13 +244,26 @@ MessageBoxImage.None, MessageBoxResult.No, null);
         // other control event handlers
         private void editor_TextChanged(object sender, TextChangedEventArgs evt)
         {
-            Console.WriteLine("changed");
+            //Console.WriteLine("changed");
             this.IsContentUpdated = true;
+            //ShowError("This is a mock error message.");
         }
 
 
 
         // helpers
+
+        /// <summary>
+        /// take the program back to its initial state, in which a untitled new document is opened
+        /// </summary>
+        private void GoBackToInitialState()
+        {
+            this.CurrentFilePath = "";
+            this.editor.Text = "";
+            this.IsContentUpdated = false;
+            
+        }
+
         private void OpenFileWithBrowser()
         {
             OpenFileDialog dlg = new OpenFileDialog();
@@ -212,8 +291,7 @@ MessageBoxImage.None, MessageBoxResult.No, null);
                     }
                     catch (Exception exp)
                     {
-                        Console.WriteLine("The file could not be read:");
-                        Console.WriteLine(exp.Message);
+                        ShowError("The file could not be read: " + exp.Message);
                     }
                 }
             }
@@ -222,7 +300,15 @@ MessageBoxImage.None, MessageBoxResult.No, null);
         private void WriteTextToNewFile()
         {
             SaveFileDialog dlg = new SaveFileDialog();
-            dlg.FileName = this.initFileName;
+            if (string.IsNullOrEmpty(this.CurrentFilePath))
+            {
+                dlg.FileName = this.initFileName;
+            }
+            else
+            {
+                dlg.FileName = this.StripExtension(this.ExtractFileName(this.currentFilePath));
+            }
+            
             dlg.DefaultExt = ".txt";
             dlg.Filter = "Text documents (.txt)|*.txt";
 
@@ -231,7 +317,6 @@ MessageBoxImage.None, MessageBoxResult.No, null);
             if (true == result)
             {
                 this.OverwriteFile(dlg.FileName, this.editor.Text);
-                this.status.Content = "The file has been saved successfully.";
             }
         }
 
@@ -242,18 +327,60 @@ MessageBoxImage.None, MessageBoxResult.No, null);
                 File.WriteAllText(filePath, text);  // overwrite if it exists, otherwise create it
                 this.CurrentFilePath = filePath;
                 this.IsContentUpdated = false;
+                this.status.Content = "The file has been saved successfully.";  // TODO: move it somewhere else
             }
             catch (Exception exp)
             {
-                Console.WriteLine("The file could not be written:");
-                Console.WriteLine(exp.Message);
+                ShowError("The file could not be written: " + exp.Message);
             }
         }
 
 
+        private string ExtractFileName(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                return "";
+            }
+            else
+            {
+                if (path.LastIndexOf('\\')>=0)
+                {
+                    return path.Substring(path.LastIndexOf('\\') + 1);
+                }
+                else
+                {
+                    return path;
+                }
+            }
+        }
+
+        private string StripExtension(string fullName)
+        {
+            if (!string.IsNullOrEmpty(fullName))
+            {
+                if (fullName.LastIndexOf('.') > 0)
+                {
+                    return fullName.Substring(0, fullName.LastIndexOf('.'));
+                }
+                else
+                {
+                    return fullName;
+                }
+            }
+            return this.initFileName;
+        }
+
         private void ShowError(string errMsg)
         {
-
+                var res = Xceed.Wpf.Toolkit.MessageBox.Show(
+                            errMsg,
+                            "Error",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Error, 
+                            MessageBoxResult.No, 
+                            null
+                        );
         }
 
 
