@@ -27,6 +27,7 @@ namespace TotaraEditor
         private readonly string initFileName = "Untitled";
         private bool isContentUpdated = false;
         private string currentFilePath = "";
+        private FontSetting viewModelFontSetting = new FontSetting();
 
         /**************
          * Properties
@@ -86,6 +87,7 @@ namespace TotaraEditor
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = this.viewModelFontSetting;
         }
 
         private void New_CanExecute(object sender, CanExecuteRoutedEventArgs evt)
@@ -335,12 +337,19 @@ namespace TotaraEditor
             //editor.FontSize = 28;
             //editor.FontFamily = new FontFamily("Euphemia");
             //editor.Foreground = Brushes.GreenYellow;
+            /*
             var res = Xceed.Wpf.Toolkit.MessageBox.Show(
 "MsgConfirmDeleteSelectedRows",
 "MsgTltConfirm",
 MessageBoxButton.YesNoCancel,
 MessageBoxImage.None, MessageBoxResult.No, null);
             Console.WriteLine("Res: " + res.ToString());
+            */
+
+            var settingsWindow = new FontSettingWindow();
+            settingsWindow.DataContext = this.viewModelFontSetting;
+            settingsWindow.Show();
+
         }
 
         // other control event handlers

@@ -1,0 +1,74 @@
+﻿<Window x:Class="TotaraEditor.FontSettingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TotaraEditor"
+        mc:Ignorable="d"
+        Title="FontSettingWindow" Height="300" Width="360" Icon="Resources/Totara_logo.png" WindowStyle="ToolWindow">
+    <Window.Resources>
+        <ObjectDataProvider 
+    ObjectInstance="{x:Type Colors}" 
+    MethodName="GetProperties" 
+    x:Key="colorPropertiesOdp" />
+</Window.Resources>
+    
+    <Grid Background="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Content="Font Family" VerticalAlignment="Center" />
+
+        <ComboBox Grid.Column="1" Grid.Row="0" Height="22" Width="240" 
+                  VerticalAlignment="Center" HorizontalAlignment="Left"
+                  ItemsSource="{x:Static Fonts.SystemFontFamilies}" 
+                  SelectedValue="{Binding FontFamily, Mode=TwoWay}"
+                  SelectedValuePath="Source"
+                  DisplayMemberPath="Source"
+                  />
+
+        <Label Grid.Column="0" Grid.Row="1" Content="Font Color" VerticalAlignment="Center"/>
+
+        <ComboBox  Grid.Column="1" Grid.Row="1" Height="22" Width="240" 
+                   VerticalAlignment="Center" HorizontalAlignment="Left"
+                   ItemsSource="{Binding Source={StaticResource colorPropertiesOdp}}"
+                   SelectedValue="{Binding FontColor, Mode=TwoWay}"
+                   DisplayMemberPath="Name"
+                   SelectedValuePath="Name" />
+
+
+
+        <Label Grid.Column="0" Grid.Row="2" Content="Font Size" VerticalAlignment="Center"/>
+
+        <Grid Grid.Column="1" Grid.Row="2" VerticalAlignment="Center">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="26" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="30" />
+            </Grid.ColumnDefinitions>
+            
+
+            <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" >10</Label>
+            <Slider x:Name="fontSizeSlider" Width="200" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                Minimum="10" Maximum="30" TickFrequency="1" 
+                 Value="{Binding FontSize, Mode=TwoWay}" IsSnapToTickEnabled="True" />
+            <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" >30</Label>
+
+            <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Content="{Binding ElementName=fontSizeSlider, Path=Value}"></Label>
+        </Grid>
+        
+    </Grid>
+</Window>

@@ -6,6 +6,11 @@
         xmlns:local="clr-namespace:TotaraEditor"
         mc:Ignorable="d"
         Title="Untitled - Totara Editor" Height="350" Width="525" Icon="Resources/Totara_logo.png" WindowStyle="ToolWindow">
+    <Window.Resources>
+        <local:FontFamilyConversions x:Key="FontFamilyConversions" />
+        <local:FontColorConversions x:Key="FontColorConversions" />
+    </Window.Resources>
+    
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.New" Executed="New_Executed" CanExecute="New_CanExecute"/>
         <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed"/>
@@ -19,7 +24,7 @@
             <RowDefinition Height="68"/>
             <RowDefinition Height="21"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="62"/>
+            <RowDefinition Height="28"/>
         </Grid.RowDefinitions>
 
         
@@ -67,14 +72,19 @@
 
         
         <!--text-->
-        <TextBox x:Name="editor"  Grid.Row="2" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" TextChanged="editor_TextChanged">
+        <TextBox x:Name="editor" Grid.Row="2" TextWrapping="Wrap" 
+                 AcceptsReturn="True" AcceptsTab="True" 
+                 VerticalScrollBarVisibility="Auto" TextChanged="editor_TextChanged" 
+                 FontFamily="{Binding FontFamily, Mode=OneWay, Converter={StaticResource FontFamilyConversions}}" 
+                 Foreground ="{Binding FontColor, Mode=OneWay, Converter={StaticResource FontColorConversions}}"
+                 FontSize="{Binding FontSize, Mode=OneWay}"
+                 >
             
         </TextBox>
 
         <!--footer#03A9DD-->
-        <WrapPanel  Grid.Row="3" Background="Black" >
-            <Slider Maximum="100" Width="400" />
-
+        <WrapPanel  Grid.Row="3" Background="#03A9DD" >
+            <Label  Foreground="AliceBlue" Content="Vincent, Copyright reserved 2016."/>
         </WrapPanel>
 
     </Grid>
