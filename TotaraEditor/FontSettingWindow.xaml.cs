@@ -27,7 +27,6 @@ namespace TotaraEditor
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            Console.WriteLine("sasha");
             e.Cancel = true;
             this.Hide();
         }
