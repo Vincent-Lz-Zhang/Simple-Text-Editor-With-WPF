@@ -8,10 +8,10 @@
         Title="FontSettingWindow" Height="300" Width="360" Icon="Resources/Totara_logo.png" WindowStyle="ToolWindow">
     <Window.Resources>
         <ObjectDataProvider 
-    ObjectInstance="{x:Type Colors}" 
-    MethodName="GetProperties" 
-    x:Key="colorPropertiesOdp" />
-</Window.Resources>
+            ObjectInstance="{x:Type Colors}" 
+            MethodName="GetProperties" 
+            x:Key="ColorList" />   
+    </Window.Resources>
     
     <Grid Background="Black">
         <Grid.RowDefinitions>
@@ -39,12 +39,10 @@
 
         <ComboBox  Grid.Column="1" Grid.Row="1" Height="22" Width="240" 
                    VerticalAlignment="Center" HorizontalAlignment="Left"
-                   ItemsSource="{Binding Source={StaticResource colorPropertiesOdp}}"
+                   ItemsSource="{Binding Source={StaticResource ColorList}}"
                    SelectedValue="{Binding FontColor, Mode=TwoWay}"
                    DisplayMemberPath="Name"
                    SelectedValuePath="Name" />
-
-
 
         <Label Grid.Column="0" Grid.Row="2" Content="Font Size" VerticalAlignment="Center"/>
 
@@ -60,7 +58,6 @@
                 <ColumnDefinition Width="30" />
             </Grid.ColumnDefinitions>
             
-
             <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" >10</Label>
             <Slider x:Name="fontSizeSlider" Width="200" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
                 Minimum="10" Maximum="30" TickFrequency="1" 
