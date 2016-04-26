@@ -340,12 +340,8 @@ namespace TotaraEditor
                 this.settingsWindow.DataContext = this.viewModelFontSetting;
             }
 
-            if (!this.settingsWindow.IsActive)
-            {
-                this.settingsWindow.Activate();
-                this.settingsWindow.Show();
-            }
-            
+            this.settingsWindow.Show();
+
         }
 
         // other control event handlers

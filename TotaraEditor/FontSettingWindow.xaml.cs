@@ -23,12 +23,13 @@ namespace TotaraEditor
         public FontSettingWindow()
         {
             InitializeComponent();
-            this.Closing += FontSettingWindow_Closing;
         }
 
-        private void FontSettingWindow_Closing(object sender, CancelEventArgs e)
+        protected override void OnClosing(CancelEventArgs e)
         {
-            Console.WriteLine("Sasha");
+            Console.WriteLine("sasha");
+            e.Cancel = true;
+            this.Hide();
         }
     }
 }
