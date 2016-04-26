@@ -28,7 +28,6 @@ namespace TotaraEditor
         private bool isContentUpdated = false;
         private string currentFilePath = "";
         private FontSetting viewModelFontSetting = new FontSetting();
-        private FontSettingWindow settingsWindow = null;
 
         /**************
          * Properties
@@ -334,14 +333,9 @@ namespace TotaraEditor
 
         private void Format_MenuItem_Click(object sender, RoutedEventArgs evt)
         {
-            if (null == this.settingsWindow)
-            {
-                this.settingsWindow = new FontSettingWindow();
-                this.settingsWindow.DataContext = this.viewModelFontSetting;
-            }
-
-            this.settingsWindow.Show();
-
+            var settings = new FontSettingWindow();
+            settings.DataContext = this.viewModelFontSetting;
+            settings.ShowDialog();
         }
 
         // other control event handlers
