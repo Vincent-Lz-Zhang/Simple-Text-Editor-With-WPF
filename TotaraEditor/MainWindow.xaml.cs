@@ -227,6 +227,108 @@ namespace TotaraEditor
             }
         }
 
+        private void Delete_CanExecute(object sender, CanExecuteRoutedEventArgs evt)
+        {
+            if (string.IsNullOrEmpty(this.CurrentFilePath))
+            {
+                evt.CanExecute = false;
+            }
+            else
+            {
+                evt.CanExecute = true;
+            }
+        }
+
+        private void Delete_Executed(object sender, ExecutedRoutedEventArgs evt)
+        {
+            if (!string.IsNullOrEmpty(this.CurrentFilePath))
+            {
+                var res = Xceed.Wpf.Toolkit.MessageBox.Show(
+                            "Are you sure you want to delete " + this.ExtractFileName(this.CurrentFilePath) + "?",
+                            "Confirm dialog",
+                            MessageBoxButton.OKCancel,
+                            MessageBoxImage.None,
+                            MessageBoxResult.Cancel,
+                            null
+                        );
+                if ("Cancel" == res.ToString())
+                {
+                    // nothing
+                }
+                else if ("OK" == res.ToString())
+                {
+                    if (File.Exists(this.CurrentFilePath))
+                    {
+                        try
+                        {
+                            File.Delete(this.CurrentFilePath);
+                            this.GoBackToInitialState();
+                            this.status.Content = "The text has been deleted.";
+                        }
+                        catch (PathTooLongException ex)
+                        {
+                            ShowError("The file could not be deleted because the path is too long.");
+                        }
+                        catch (UnauthorizedAccessException ex)
+                        {
+                            ShowError("The file could not be deleted because your account doesn't have the permission.");
+                        }
+                        catch (IOException ex)
+                        {
+                            ShowError("The file could not be deleted because it is held by another process.");
+                        }
+                        catch (Exception ex) when (ex is ArgumentException || ex is ArgumentNullException || ex is DirectoryNotFoundException || ex is NotSupportedException)
+                        {
+                            ShowError("The file could not be deleted because the path is invalid.");
+                        }
+                        catch (Exception ex)
+                        {
+                            ShowError("The file could not be deleted. " + ex.Message);
+                        }
+                    }
+                }
+                else
+                {
+                    ShowError("I believe something goes wrong. You may need to restart Totara Editor.");
+                }
+            }
+        }
+
+        private void Quit_MenuItem_Click(object sender, RoutedEventArgs evt)
+        {
+            if (this.IsContentUpdated)
+            {
+                var res = Xceed.Wpf.Toolkit.MessageBox.Show(
+                            "You have a document unsaved, would you like to save it before you quit?",
+                            "Confirm dialog",
+                            MessageBoxButton.YesNoCancel,
+                            MessageBoxImage.None,
+                            MessageBoxResult.Cancel,
+                            null
+                        );
+                if ("Cancel" == res.ToString())
+                {
+                    // nothing
+                }
+                else if ("No" == res.ToString())
+                {
+                    this.Quit();
+                }
+                else if ("Yes" == res.ToString())
+                {
+                    this.Save_Executed(sender, null);
+                }
+                else
+                {
+                    ShowError("I believe something goes wrong. You may need to restart Totara Editor.");
+                }
+            }
+            else
+            {
+                this.Quit();
+            }
+        }
+
         private void Format_MenuItem_Click(object sender, RoutedEventArgs evt)
         {
 
@@ -261,9 +363,11 @@ MessageBoxImage.None, MessageBoxResult.No, null);
             this.CurrentFilePath = "";
             this.editor.Text = "";
             this.IsContentUpdated = false;
-            
         }
 
+        /// <summary>
+        /// let user pick up a file to open through file browser 
+        /// </summary>
         private void OpenFileWithBrowser()
         {
             OpenFileDialog dlg = new OpenFileDialog();
@@ -297,6 +401,9 @@ MessageBoxImage.None, MessageBoxResult.No, null);
             }
         }
 
+        /// <summary>
+        /// save the text of editor to either to an opened file or a new file
+        /// </summary>
         private void WriteTextToNewFile()
         {
             SaveFileDialog dlg = new SaveFileDialog();
@@ -320,6 +427,9 @@ MessageBoxImage.None, MessageBoxResult.No, null);
             }
         }
 
+        /// <summary>
+        /// if the file passed exists, then overwrite the text to it, otherwise create it, and write the text
+        /// </summary>
         private void OverwriteFile(string filePath, string text)
         {
             try
@@ -335,7 +445,17 @@ MessageBoxImage.None, MessageBoxResult.No, null);
             }
         }
 
+        /// <summary>
+        /// quit the WPF application
+        /// </summary>
+        private void Quit()
+        {
+            Application.Current.Shutdown();
+        }
 
+        /// <summary>
+        /// extract the files name from its full path
+        /// </summary>
         private string ExtractFileName(string path)
         {
             if (string.IsNullOrWhiteSpace(path))
@@ -355,6 +475,9 @@ MessageBoxImage.None, MessageBoxResult.No, null);
             }
         }
 
+        /// <summary>
+        /// strip off the extension name from a file name
+        /// </summary>
         private string StripExtension(string fullName)
         {
             if (!string.IsNullOrEmpty(fullName))
@@ -371,16 +494,19 @@ MessageBoxImage.None, MessageBoxResult.No, null);
             return this.initFileName;
         }
 
+        /// <summary>
+        /// pop up a error dialog, displaying the passed message
+        /// </summary>
         private void ShowError(string errMsg)
         {
-                var res = Xceed.Wpf.Toolkit.MessageBox.Show(
-                            errMsg,
-                            "Error",
-                            MessageBoxButton.OK,
-                            MessageBoxImage.Error, 
-                            MessageBoxResult.No, 
-                            null
-                        );
+            var res = Xceed.Wpf.Toolkit.MessageBox.Show(
+                        errMsg,
+                        "Error",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error, 
+                        MessageBoxResult.No, 
+                        null
+                    );
         }
 
 

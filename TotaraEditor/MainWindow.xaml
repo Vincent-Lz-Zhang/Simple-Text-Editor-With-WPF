@@ -11,6 +11,7 @@
         <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed"/>
         <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed" CanExecute="Save_CanExecute"/>
         <CommandBinding Command="ApplicationCommands.SaveAs" Executed="SaveAs_Executed" CanExecute="SaveAs_CanExecute"/>
+        <CommandBinding Command="ApplicationCommands.Delete" Executed="Delete_Executed" CanExecute="Delete_CanExecute"/>
     </Window.CommandBindings>
 
     <Grid >
@@ -52,10 +53,10 @@
                     <MenuItem Header="New" Command="ApplicationCommands.New"></MenuItem>
                     <MenuItem Header="Open" Command="ApplicationCommands.Open"></MenuItem>
                     <MenuItem Header="Save" Command="ApplicationCommands.Save"></MenuItem>
-                    <MenuItem Background="#FF181818" Foreground="#FFABABAB" Header="Save As" Command="ApplicationCommands.SaveAs"></MenuItem>
+                    <MenuItem Header="Save As" Command="ApplicationCommands.SaveAs"></MenuItem>
                     <Separator Background="#FF181818" Foreground="#FFABABAB"></Separator>
-                    <MenuItem Background="#FF181818" Foreground="#FFABABAB" Header="Delete"></MenuItem>
-                    <MenuItem Background="#FF181818" Foreground="#FFABABAB" Header="Quit"></MenuItem>
+                    <MenuItem Header="Delete" Command="ApplicationCommands.Delete"></MenuItem>
+                    <MenuItem Header="Quit" Click="Quit_MenuItem_Click"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Format" Click="Format_MenuItem_Click" ></MenuItem>
                 <MenuItem Header="About" ></MenuItem>
