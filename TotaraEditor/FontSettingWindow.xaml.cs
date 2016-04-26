@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.ComponentModel;
 
 namespace TotaraEditor
 {
@@ -22,6 +23,12 @@ namespace TotaraEditor
         public FontSettingWindow()
         {
             InitializeComponent();
+            this.Closing += FontSettingWindow_Closing;
+        }
+
+        private void FontSettingWindow_Closing(object sender, CancelEventArgs e)
+        {
+            Console.WriteLine("Sasha");
         }
     }
 }
