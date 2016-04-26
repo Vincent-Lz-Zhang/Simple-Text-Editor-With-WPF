@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TotaraEditor"
         mc:Ignorable="d"
-        Title="FontSettingWindow" Height="300" Width="360" Icon="Resources/Totara_logo.png" WindowStyle="ToolWindow">
+        Title="FontSettingWindow" Height="300" Width="360" Icon="Resources/Totara_logo.png" 
+        WindowStyle="ToolWindow" ResizeMode="NoResize">
     <Window.Resources>
         <ObjectDataProvider 
             ObjectInstance="{x:Type Colors}" 
@@ -47,7 +48,6 @@
         <Label Grid.Column="0" Grid.Row="2" Content="Font Size" VerticalAlignment="Center"/>
 
         <Grid Grid.Column="1" Grid.Row="2" VerticalAlignment="Center">
-            
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="26" />
@@ -55,17 +55,19 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="30" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="40" />
             </Grid.ColumnDefinitions>
-            
             <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Top" >10</Label>
             <Slider x:Name="fontSizeSlider" Width="200" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
                 Minimum="10" Maximum="30" TickFrequency="1" 
                  Value="{Binding FontSize, Mode=TwoWay}" IsSnapToTickEnabled="True" />
-            <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" >30</Label>
-
+            <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 0, 10, 0">30</Label>
             <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Content="{Binding ElementName=fontSizeSlider, Path=Value}"></Label>
         </Grid>
-        
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" MaxHeight="32">
+            <Button Content="Reset" Margin="10, 0, 10, 0" Click="ResetBtn_Clicked"></Button>
+            <Button Content="OK" Margin="10, 0, 10, 0" Click="OKBtn_Clicked"></Button>
+        </StackPanel>
     </Grid>
 </Window>

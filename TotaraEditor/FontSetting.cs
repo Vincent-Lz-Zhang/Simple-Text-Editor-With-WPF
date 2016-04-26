@@ -4,9 +4,14 @@ namespace TotaraEditor
 {
     class FontSetting : INotifyPropertyChanged
     {
-        private string _fontFamily = "Arial";   // initial font
-        private string _fontColor = "Lavender";   // initial color
-        private int _fontSize = 12;   // initial font size
+        public const string DEFAULT_FONT_FAMILY = "Arial";      // initial font
+        public const string DEFAULT_FONT_COLOR = "Lavender";    // initial color
+        public const int DEFAULT_FONT_SIZE = 12;                // initial font size
+
+        private string _fontFamily = DEFAULT_FONT_FAMILY;
+        private string _fontColor = DEFAULT_FONT_COLOR;
+        private int _fontSize = DEFAULT_FONT_SIZE;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public string FontFamily
@@ -46,6 +51,13 @@ namespace TotaraEditor
                 _fontSize = value;
                 OnPropertyChanged("FontSize");
             }
+        }
+
+        public void SetToDefault()
+        {
+            this.FontColor = DEFAULT_FONT_COLOR;
+            this.FontFamily = DEFAULT_FONT_FAMILY;
+            this.FontSize = DEFAULT_FONT_SIZE;
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
