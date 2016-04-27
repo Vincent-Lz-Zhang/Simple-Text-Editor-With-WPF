@@ -24,3 +24,6 @@ C:\Users\Vincent\documents\visual studio 2015\Projects\TotaraEditor\TotaraEditor
 C:\Users\Vincent\documents\visual studio 2015\Projects\TotaraEditor\TotaraEditor\obj\Debug\TotaraEditor.csproj.GenerateResource.Cache
 C:\Users\Vincent\documents\visual studio 2015\Projects\TotaraEditor\TotaraEditor\obj\Debug\TotaraEditor.exe
 C:\Users\Vincent\documents\visual studio 2015\Projects\TotaraEditor\TotaraEditor\obj\Debug\TotaraEditor.pdb
+C:\Users\Vincent\documents\visual studio 2015\Projects\TotaraEditor\TotaraEditor\obj\Debug\TotaraEditor.csprojResolveAssemblyReference.cache
+C:\Users\Vincent\documents\visual studio 2015\Projects\TotaraEditor\TotaraEditor\obj\Debug\AboutWindow.g.cs
+C:\Users\Vincent\documents\visual studio 2015\Projects\TotaraEditor\TotaraEditor\obj\Debug\AboutWindow.baml

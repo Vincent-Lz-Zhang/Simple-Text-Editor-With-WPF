@@ -1,20 +1,11 @@
 ﻿using Xceed.Wpf.Toolkit;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Win32;
 using System.IO;
+using System.ComponentModel;
 
 namespace TotaraEditor
 {
@@ -91,6 +82,12 @@ namespace TotaraEditor
             this.DataContext = this.viewModelFontSetting;
         }
 
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            e.Cancel = true;
+            this.ConfirmQuit(null, null);
+        }
+
         private void New_CanExecute(object sender, CanExecuteRoutedEventArgs evt)
         {
             if (string.IsNullOrEmpty(this.CurrentFilePath) && !this.IsContentUpdated)
@@ -150,11 +147,11 @@ namespace TotaraEditor
         {
             if (this.isContentUpdated)
             {
-                var res = Xceed.Wpf.Toolkit.MessageBox.Show(    
-                            "You have a document unsaved, would you like to save it before you go somewhere else?", 
+                var res = Xceed.Wpf.Toolkit.MessageBox.Show(
+                            "You have a document unsaved, would you like to save it before you go somewhere else?",
                             "Confirm dialog",
                             MessageBoxButton.YesNoCancel,
-                            MessageBoxImage.None, 
+                            MessageBoxImage.None,
                             MessageBoxResult.Cancel,
                             (Style)Resources["MessageBoxStyle1"]
                         );
@@ -179,7 +176,7 @@ namespace TotaraEditor
             {
                 this.OpenFileWithBrowser();
             }
-            
+
         }
 
         private void Save_CanExecute(object sender, CanExecuteRoutedEventArgs evt)
@@ -299,37 +296,7 @@ namespace TotaraEditor
 
         private void Quit_MenuItem_Click(object sender, RoutedEventArgs evt)
         {
-            if (this.IsContentUpdated)
-            {
-                var res = Xceed.Wpf.Toolkit.MessageBox.Show(
-                            "You have a document unsaved, would you like to save it before you quit?",
-                            "Confirm dialog",
-                            MessageBoxButton.YesNoCancel,
-                            MessageBoxImage.None,
-                            MessageBoxResult.Cancel,
-                            (Style)Resources["MessageBoxStyle1"]
-                        );
-                if ("Cancel" == res.ToString())
-                {
-                    // nothing
-                }
-                else if ("No" == res.ToString())
-                {
-                    this.Quit();
-                }
-                else if ("Yes" == res.ToString())
-                {
-                    this.Save_Executed(sender, null);
-                }
-                else
-                {
-                    ShowError("I believe something goes wrong. You may need to restart Totara Editor.");
-                }
-            }
-            else
-            {
-                this.Quit();
-            }
+            this.ConfirmQuit(sender, null);
         }
 
         private void Format_MenuItem_Click(object sender, RoutedEventArgs evt)
@@ -339,9 +306,13 @@ namespace TotaraEditor
                 this.settingsWindow = new FontSettingWindow();
                 this.settingsWindow.DataContext = this.viewModelFontSetting;
             }
-
             this.settingsWindow.Show();
+        }
 
+        private void About_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var aboutWin = new AboutWindow();
+            aboutWin.ShowDialog();
         }
 
         // other control event handlers
@@ -416,7 +387,7 @@ namespace TotaraEditor
             {
                 dlg.FileName = this.StripExtension(this.ExtractFileName(this.currentFilePath));
             }
-            
+
             dlg.DefaultExt = ".txt";
             dlg.Filter = "Text documents (.txt)|*.txt";
 
@@ -446,6 +417,41 @@ namespace TotaraEditor
             }
         }
 
+        private void ConfirmQuit(object sender, ExecutedRoutedEventArgs evt)
+        {
+            if (this.IsContentUpdated)
+            {
+                var res = Xceed.Wpf.Toolkit.MessageBox.Show(
+                            "You have a document unsaved, would you like to save it before you quit?",
+                            "Confirm dialog",
+                            MessageBoxButton.YesNoCancel,
+                            MessageBoxImage.None,
+                            MessageBoxResult.Cancel,
+                            (Style)Resources["MessageBoxStyle1"]
+                        );
+                if ("Cancel" == res.ToString())
+                {
+                    // nothing
+                }
+                else if ("No" == res.ToString())
+                {
+                    this.Quit();
+                }
+                else if ("Yes" == res.ToString())
+                {
+                    this.Save_Executed(sender, evt);
+                }
+                else
+                {
+                    ShowError("I believe something goes wrong. You may need to restart Totara Editor.");
+                }
+            }
+            else
+            {
+                this.Quit();
+            }
+        }
+
         /// <summary>
         /// quit the WPF application
         /// </summary>
@@ -465,7 +471,7 @@ namespace TotaraEditor
             }
             else
             {
-                if (path.LastIndexOf('\\')>=0)
+                if (path.LastIndexOf('\\') >= 0)
                 {
                     return path.Substring(path.LastIndexOf('\\') + 1);
                 }
@@ -504,13 +510,11 @@ namespace TotaraEditor
                         errMsg,
                         "Error",
                         MessageBoxButton.OK,
-                        MessageBoxImage.Error, 
+                        MessageBoxImage.Error,
                         MessageBoxResult.No,
                         (Style)Resources["MessageBoxStyle1"]
                     );
         }
 
-
-        
     }
 }

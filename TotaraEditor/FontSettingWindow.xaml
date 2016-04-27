@@ -45,10 +45,10 @@
                    SelectedValue="{Binding FontColor, Mode=TwoWay}"
                    DisplayMemberPath="Name"
                    SelectedValuePath="Name"
-                   Foreground="{Binding FontColor, Mode=OneWay, Converter={StaticResource FontColorConversions}}">
+                   >
             <!--<ComboBox.ItemContainerStyle>
                 <Style TargetType="ComboBoxItem">
-                    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=Value, Converter={StaticResource FontColorConversions}}"/>
+                    <Setter Property="Foreground" Value="{Binding Converter={StaticResource FontColorConversions}}"/>
                 </Style>
             </ComboBox.ItemContainerStyle>-->
         </ComboBox>

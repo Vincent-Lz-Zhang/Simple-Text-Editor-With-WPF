@@ -1,0 +1,53 @@
+﻿<Window x:Class="TotaraEditor.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TotaraEditor"
+        mc:Ignorable="d"
+        Title="About Totara Editor" Height="300" Width="440" Icon="Resources/Totara_logo.png"
+        WindowStyle="ToolWindow" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <!--header-->
+        <WrapPanel Grid.Row="0" Background="#FEE000" FlowDirection="LeftToRight">
+            <!--<Label Content="About Totara Editor" Foreground="Black" FontWeight="Bold"/>-->
+        </WrapPanel>
+
+
+        <Grid Grid.Row="1" Background="Black">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Column="0" Height="100" Width="100" Source="Resources/Totara_logo.png" VerticalAlignment="Center" />
+
+            <TextBlock Foreground="#FFABABAB"  Grid.Column="1" TextWrapping="Wrap">
+                Totara Editor is developed by me, Vincent Zhang. It is based on WPF, MetroDark theme and Extended WPF Toolkit. 
+                <LineBreak />
+                <Hyperlink RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="http://www.infragistics.com/community/blogs/blagunas/archive/2013/05/25/free-metro-light-and-dark-themes-for-wpf-and-silverlight-microsoft-controls.aspx">MetroDark</Hyperlink>
+                is an opensource project on git developed by infragistics, 
+                unfortunately it doesn't have style for menu and menu item. 
+                <LineBreak />
+                <Hyperlink RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="http://wpftoolkit.codeplex.com/">Extended WPF Toolkit</Hyperlink>
+                is an opensource project on CodePlex, originally it was integrated into this project in order to have a style-customizable message box,
+                so that the overall style of the program can stay consistent.
+                <LineBreak />
+                Nevertheless, as the effort on those styling work is beyond my imagination and I am running out of time, most of the original plan has to be cut off.
+            </TextBlock>
+
+        </Grid>
+        
+        
+        <WrapPanel  Grid.Row="2" Background="#03A9DD" >
+            <Label  Foreground="AliceBlue" Margin="0, -4, 0, 0" Content="Vincent, Copyright reserved 2016."/>
+        </WrapPanel>
+
+    </Grid>
+</Window>
