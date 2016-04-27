@@ -55,18 +55,6 @@
                 </Setter>
             </Style>
 
-            <Style TargetType="{x:Type xctk:MessageBox}">
-                <Setter Property="CaptionShadowBrush" Value="Transparent"></Setter>
-                <Setter Property="Background" Value="#FF1E1E1E" />
-                <Setter Property="BorderBrush" Value="#FF999999" />
-                <Setter Property="CaptionForeground" Value="#FFF1F1F1" />
-                <Setter Property="WindowBorderBrush" Value="#FF686868" />
-                <Setter Property="WindowBackground" Value="#FF2D2D30" />
-                <Setter Property="WindowOpacity" Value="0.3" />
-                <Setter Property="Foreground" Value="#FFF1F1F1"/>
-                <Setter Property="CloseButtonStyle" Value="{StaticResource MyCloseButtonStyle}"/>
-            </Style>
-
             <Style x:Key="ButtonStyle1" TargetType="Button">
                 <Setter Property="Background" Value="LightGreen"></Setter>
                 <Setter Property="Foreground" Value="DarkGreen"></Setter>
@@ -78,6 +66,18 @@
             <Style x:Key="ButtonStyle3" TargetType="Button">
                 <Setter Property="Background" Value="LightYellow"></Setter>
                 <Setter Property="Foreground" Value="DarkOrange"></Setter>
+            </Style>
+            
+            <Style TargetType="{x:Type xctk:MessageBox}">
+                <Setter Property="CaptionShadowBrush" Value="Transparent"/>
+                <Setter Property="Background" Value="#FF1E1E1E" />
+                <Setter Property="BorderBrush" Value="#FF999999" />
+                <Setter Property="CaptionForeground" Value="#FFF1F1F1" />
+                <Setter Property="WindowBorderBrush" Value="#FF686868" />
+                <Setter Property="WindowBackground" Value="#FF2D2D30" />
+                <Setter Property="WindowOpacity" Value="0.3" />
+                <Setter Property="Foreground" Value="#FFF1F1F1"/>
+                <Setter Property="CloseButtonStyle" Value="{StaticResource MyCloseButtonStyle}"/>
             </Style>
 
             <Style x:Key="MessageBoxStyle1" TargetType="{x:Type xctk:MessageBox}">

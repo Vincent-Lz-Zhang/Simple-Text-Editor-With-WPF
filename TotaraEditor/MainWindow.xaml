@@ -9,6 +9,23 @@
     <Window.Resources>
         <local:StringToFontFamilyConverter x:Key="FontFamilyConversions" />
         <local:StringToBrushConverter x:Key="FontColorConversions" />
+
+        <Style x:Key="TotaraSeparator" TargetType="{x:Type Separator}">
+            <Setter Property="Background" Value="#FF181818"/>
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Separator}">
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            SnapsToDevicePixels="true"
+                            Height="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     
     <Window.CommandBindings>
@@ -17,6 +34,7 @@
         <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed" CanExecute="Save_CanExecute"/>
         <CommandBinding Command="ApplicationCommands.SaveAs" Executed="SaveAs_Executed" CanExecute="SaveAs_CanExecute"/>
         <CommandBinding Command="ApplicationCommands.Delete" Executed="Delete_Executed" CanExecute="Delete_CanExecute"/>
+        
     </Window.CommandBindings>
 
     <Grid >
@@ -43,8 +61,8 @@
                         </Style.Setters>
                         <Style.Triggers>
                             <Trigger Property="MenuItem.IsMouseOver" Value="True">
-                                <Setter Property="MenuItem.Background" Value="Green" />
-                                <Setter Property="MenuItem.Foreground" Value="Red" />
+                                <Setter Property="MenuItem.Background" Value="#FF262626" />
+                                <Setter Property="MenuItem.Foreground" Value="#03A9DD" />
                             </Trigger>
                             <!--<Trigger Property="MenuItem.IsFocused" Value="True">
                                 <Setter Property="MenuItem.Background" Value="#FF13C333" />
@@ -58,9 +76,9 @@
                     <MenuItem Header="Open" Command="ApplicationCommands.Open"></MenuItem>
                     <MenuItem Header="Save" Command="ApplicationCommands.Save"></MenuItem>
                     <MenuItem Header="Save As" Command="ApplicationCommands.SaveAs"></MenuItem>
-                    <Separator Background="#FF181818" Foreground="#FFABABAB"></Separator>
+                    <Separator Style="{StaticResource TotaraSeparator}"></Separator>
                     <MenuItem Header="Delete" Command="ApplicationCommands.Delete"></MenuItem>
-                    <MenuItem Header="Quit" Click="Quit_MenuItem_Click"></MenuItem>
+                    <MenuItem Header="Exit" Click="Quit_MenuItem_Click" InputGestureText="Ctrl+X"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Format" Click="Format_MenuItem_Click" ></MenuItem>
                 <MenuItem Header="About" Click="About_MenuItem_Click" />
@@ -81,7 +99,7 @@
 
         <!--footer#03A9DD-->
         <WrapPanel  Grid.Row="3" Background="#03A9DD" >
-            <Label  Foreground="AliceBlue" Content="Vincent, Copyright reserved 2016."/>
+            <Label  Foreground="AliceBlue" Content="Vincent Zhang, Copyright reserved 2016."/>
         </WrapPanel>
 
     </Grid>

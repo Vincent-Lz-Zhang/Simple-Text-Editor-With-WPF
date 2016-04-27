@@ -9,14 +9,13 @@
         WindowStyle="ToolWindow" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="16"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="24"/>
         </Grid.RowDefinitions>
 
         <!--header-->
         <WrapPanel Grid.Row="0" Background="#FEE000" FlowDirection="LeftToRight">
-            <!--<Label Content="About Totara Editor" Foreground="Black" FontWeight="Bold"/>-->
         </WrapPanel>
 
 
@@ -44,9 +43,8 @@
 
         </Grid>
         
-        
         <WrapPanel  Grid.Row="2" Background="#03A9DD" >
-            <Label  Foreground="AliceBlue" Margin="0, -4, 0, 0" Content="Vincent, Copyright reserved 2016."/>
+            <Label  Foreground="AliceBlue" Margin="0, -4, 0, 0" Content="Vincent Zhang, Copyright reserved 2016."/>
         </WrapPanel>
 
     </Grid>
