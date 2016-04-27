@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TotaraEditor"
         mc:Ignorable="d"
-        Title="Untitled - Totara Editor" Height="350" Width="525" Icon="Resources/Totara_logo.png" WindowStyle="ToolWindow">
+        Title="Untitled - Totara Editor" Height="600" Width="800" Icon="Resources/Totara_logo.png" WindowStyle="ToolWindow">
     <Window.Resources>
         <local:StringToFontFamilyConverter x:Key="FontFamilyConversions" />
         <local:StringToBrushConverter x:Key="FontColorConversions" />

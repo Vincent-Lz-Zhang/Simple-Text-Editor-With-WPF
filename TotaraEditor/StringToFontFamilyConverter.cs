@@ -1,13 +1,15 @@
-﻿using System.Windows.Media;
+﻿using System;
+using System.Windows.Media;
+using System.Globalization;
 using System.Windows.Data;
 
 namespace TotaraEditor
 {
     class StringToFontFamilyConverter : IValueConverter
     {
-        public object Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            FontFamily fontfamily = new FontFamily("Arial");
+            FontFamily fontfamily = new FontFamily(FontSetting.DEFAULT_FONT_FAMILY);
             if (value != null)
             {
                 fontfamily = new FontFamily(value.ToString());
@@ -15,7 +17,7 @@ namespace TotaraEditor
             return fontfamily;
         }
 
-        public object ConvertBack(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value != null)
             {

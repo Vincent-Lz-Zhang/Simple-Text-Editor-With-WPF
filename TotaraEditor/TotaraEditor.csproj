@@ -89,6 +89,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ColorToBrushConverter.cs" />
     <Compile Include="StringToBrushConverter.cs" />
     <Compile Include="StringToFontFamilyConverter.cs" />
     <Compile Include="FontSetting.cs" />
