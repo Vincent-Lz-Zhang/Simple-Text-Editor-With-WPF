@@ -110,7 +110,7 @@ namespace TotaraEditor
                             MessageBoxButton.YesNoCancel,
                             MessageBoxImage.None,
                             MessageBoxResult.Cancel,
-                            (Style)Resources["MessageBoxStyle1"]
+                            (Style)App.Current.Resources["TotaraMessageBoxStyle"]
                         );
                 if ("Cancel" == res.ToString())
                 {
@@ -153,7 +153,7 @@ namespace TotaraEditor
                             MessageBoxButton.YesNoCancel,
                             MessageBoxImage.None,
                             MessageBoxResult.Cancel,
-                            (Style)Resources["MessageBoxStyle1"]
+                            (Style)App.Current.Resources["TotaraMessageBoxStyle"]
                         );
                 if ("Cancel" == res.ToString())
                 {
@@ -176,7 +176,6 @@ namespace TotaraEditor
             {
                 this.OpenFileWithBrowser();
             }
-
         }
 
         private void Save_CanExecute(object sender, CanExecuteRoutedEventArgs evt)
@@ -208,7 +207,6 @@ namespace TotaraEditor
 
         private void SaveAs_CanExecute(object sender, CanExecuteRoutedEventArgs evt)
         {
-            //if (string.IsNullOrEmpty(this.CurrentFilePath) && string.IsNullOrWhiteSpace(this.editor.Text))
             if (string.IsNullOrEmpty(this.CurrentFilePath) && !this.IsContentUpdated)
             {
                 evt.CanExecute = false;
@@ -249,7 +247,7 @@ namespace TotaraEditor
                             MessageBoxButton.OKCancel,
                             MessageBoxImage.None,
                             MessageBoxResult.Cancel,
-                            (Style)Resources["MessageBoxStyle1"]
+                            (Style)App.Current.Resources["TotaraMessageBoxStyle"]
                         );
                 if ("Cancel" == res.ToString())
                 {
@@ -318,11 +316,8 @@ namespace TotaraEditor
         // other control event handlers
         private void editor_TextChanged(object sender, TextChangedEventArgs evt)
         {
-            //Console.WriteLine("changed");
             this.IsContentUpdated = true;
-            //ShowError("This is a mock error message.");
         }
-
 
 
         // helpers
@@ -427,7 +422,7 @@ namespace TotaraEditor
                             MessageBoxButton.YesNoCancel,
                             MessageBoxImage.None,
                             MessageBoxResult.Cancel,
-                            (Style)Resources["MessageBoxStyle1"]
+                            (Style)App.Current.Resources["TotaraMessageBoxStyle"]
                         );
                 if ("Cancel" == res.ToString())
                 {
@@ -512,7 +507,7 @@ namespace TotaraEditor
                         MessageBoxButton.OK,
                         MessageBoxImage.Error,
                         MessageBoxResult.No,
-                        (Style)Resources["MessageBoxStyle1"]
+                        (Style)App.Current.Resources["TotaraMessageBoxStyle"]
                     );
         }
 
