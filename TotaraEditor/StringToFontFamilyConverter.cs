@@ -3,7 +3,7 @@ using System.Windows.Data;
 
 namespace TotaraEditor
 {
-    class FontFamilyConversions : IValueConverter
+    class StringToFontFamilyConverter : IValueConverter
     {
         public object Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {

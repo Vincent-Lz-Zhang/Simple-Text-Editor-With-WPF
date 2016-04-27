@@ -11,7 +11,8 @@
         <ObjectDataProvider 
             ObjectInstance="{x:Type Colors}" 
             MethodName="GetProperties" 
-            x:Key="ColorList" />   
+            x:Key="ColorList" />
+        <local:StringToBrushConverter x:Key="FontColorConversions" />
     </Window.Resources>
     
     <Grid Background="Black">
@@ -43,8 +44,14 @@
                    ItemsSource="{Binding Source={StaticResource ColorList}}"
                    SelectedValue="{Binding FontColor, Mode=TwoWay}"
                    DisplayMemberPath="Name"
-                   SelectedValuePath="Name" />
-
+                   SelectedValuePath="Name"
+                   Foreground="{Binding FontColor, Mode=OneWay, Converter={StaticResource FontColorConversions}}">
+            <!--<ComboBox.ItemContainerStyle>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource Self}, Path=Value, Converter={StaticResource FontColorConversions}}"/>
+                </Style>
+            </ComboBox.ItemContainerStyle>-->
+        </ComboBox>
         <Label Grid.Column="0" Grid.Row="2" Content="Font Size" VerticalAlignment="Center"/>
 
         <Grid Grid.Column="1" Grid.Row="2" VerticalAlignment="Center">

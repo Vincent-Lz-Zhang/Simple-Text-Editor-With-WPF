@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="Untitled - Totara Editor" Height="350" Width="525" Icon="Resources/Totara_logo.png" WindowStyle="ToolWindow">
     <Window.Resources>
-        <local:FontFamilyConversions x:Key="FontFamilyConversions" />
-        <local:FontColorConversions x:Key="FontColorConversions" />
+        <local:StringToFontFamilyConverter x:Key="FontFamilyConversions" />
+        <local:StringToBrushConverter x:Key="FontColorConversions" />
     </Window.Resources>
     
     <Window.CommandBindings>

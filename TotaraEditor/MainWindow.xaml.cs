@@ -113,7 +113,7 @@ namespace TotaraEditor
                             MessageBoxButton.YesNoCancel,
                             MessageBoxImage.None,
                             MessageBoxResult.Cancel,
-                            null
+                            (Style)Resources["MessageBoxStyle1"]
                         );
                 if ("Cancel" == res.ToString())
                 {
@@ -155,8 +155,8 @@ namespace TotaraEditor
                             "Confirm dialog",
                             MessageBoxButton.YesNoCancel,
                             MessageBoxImage.None, 
-                            MessageBoxResult.Cancel, 
-                            null
+                            MessageBoxResult.Cancel,
+                            (Style)Resources["MessageBoxStyle1"]
                         );
                 if ("Cancel" == res.ToString())
                 {
@@ -252,7 +252,7 @@ namespace TotaraEditor
                             MessageBoxButton.OKCancel,
                             MessageBoxImage.None,
                             MessageBoxResult.Cancel,
-                            null
+                            (Style)Resources["MessageBoxStyle1"]
                         );
                 if ("Cancel" == res.ToString())
                 {
@@ -307,7 +307,7 @@ namespace TotaraEditor
                             MessageBoxButton.YesNoCancel,
                             MessageBoxImage.None,
                             MessageBoxResult.Cancel,
-                            null
+                            (Style)Resources["MessageBoxStyle1"]
                         );
                 if ("Cancel" == res.ToString())
                 {
@@ -505,8 +505,8 @@ namespace TotaraEditor
                         "Error",
                         MessageBoxButton.OK,
                         MessageBoxImage.Error, 
-                        MessageBoxResult.No, 
-                        null
+                        MessageBoxResult.No,
+                        (Style)Resources["MessageBoxStyle1"]
                     );
         }
 

@@ -82,8 +82,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="FontColorConversions.cs" />
-    <Compile Include="FontFamilyConversions.cs" />
+    <Compile Include="StringToBrushConverter.cs" />
+    <Compile Include="StringToFontFamilyConverter.cs" />
     <Compile Include="FontSetting.cs" />
     <Compile Include="FontSettingWindow.xaml.cs">
       <DependentUpon>FontSettingWindow.xaml</DependentUpon>
