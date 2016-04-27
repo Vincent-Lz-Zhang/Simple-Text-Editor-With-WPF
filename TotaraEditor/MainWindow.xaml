@@ -27,14 +27,14 @@
             </Setter>
         </Style>
     </Window.Resources>
-    
+
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.New" Executed="New_Executed" CanExecute="New_CanExecute"/>
         <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed"/>
         <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed" CanExecute="Save_CanExecute"/>
         <CommandBinding Command="ApplicationCommands.SaveAs" Executed="SaveAs_Executed" CanExecute="SaveAs_CanExecute"/>
         <CommandBinding Command="ApplicationCommands.Delete" Executed="Delete_Executed" CanExecute="Delete_CanExecute"/>
-        
+        <CommandBinding Command="local:TotaraApplicationCommands.Quit" Executed="Quit_Executed"/>
     </Window.CommandBindings>
 
     <Grid >
@@ -78,7 +78,7 @@
                     <MenuItem Header="Save As" Command="ApplicationCommands.SaveAs"></MenuItem>
                     <Separator Style="{StaticResource TotaraSeparator}"></Separator>
                     <MenuItem Header="Delete" Command="ApplicationCommands.Delete"></MenuItem>
-                    <MenuItem Header="Exit" Click="Quit_MenuItem_Click" InputGestureText="Ctrl+X"></MenuItem>
+                    <MenuItem Header="Quit" Command="local:TotaraApplicationCommands.Quit"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Format" Click="Format_MenuItem_Click" ></MenuItem>
                 <MenuItem Header="About" Click="About_MenuItem_Click" />

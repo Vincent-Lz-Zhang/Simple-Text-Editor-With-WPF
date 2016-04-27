@@ -5,7 +5,6 @@ C:\Users\Vincent\documents\visual studio 2015\Projects\TotaraEditor\TotaraEditor
 C:\Users\Vincent\documents\visual studio 2015\Projects\TotaraEditor\TotaraEditor\bin\Debug\System.Windows.Controls.Layout.Toolkit.dll
 C:\Users\Vincent\documents\visual studio 2015\Projects\TotaraEditor\TotaraEditor\bin\Debug\WPFToolkit.dll
 C:\Users\Vincent\documents\visual studio 2015\Projects\TotaraEditor\TotaraEditor\bin\Debug\Xceed.Wpf.Toolkit.dll
-C:\Users\Vincent\documents\visual studio 2015\Projects\TotaraEditor\TotaraEditor\obj\Debug\TotaraEditor.csprojResolveAssemblyReference.cache
 C:\Users\Vincent\documents\visual studio 2015\Projects\TotaraEditor\TotaraEditor\obj\Debug\Themes\MetroDark\MetroDark.MSControls.Core.Implicit.baml
 C:\Users\Vincent\documents\visual studio 2015\Projects\TotaraEditor\TotaraEditor\obj\Debug\Themes\MetroDark\MetroDark.MSControls.Toolkit.Implicit.baml
 C:\Users\Vincent\documents\visual studio 2015\Projects\TotaraEditor\TotaraEditor\obj\Debug\Themes\MetroDark\Styles.Shared.baml

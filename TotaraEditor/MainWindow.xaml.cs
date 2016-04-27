@@ -1,11 +1,11 @@
-﻿using Xceed.Wpf.Toolkit;
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Win32;
 using System.IO;
 using System.ComponentModel;
+using System.Security;
 
 namespace TotaraEditor
 {
@@ -292,9 +292,14 @@ namespace TotaraEditor
             }
         }
 
+        private void Quit_Executed(object sender, ExecutedRoutedEventArgs evt)
+        {
+            this.ConfirmQuit(sender, evt);
+        }
+
         private void Quit_MenuItem_Click(object sender, RoutedEventArgs evt)
         {
-            this.ConfirmQuit(sender, null);
+            
         }
 
         private void Format_MenuItem_Click(object sender, RoutedEventArgs evt)
@@ -360,6 +365,14 @@ namespace TotaraEditor
                             this.IsContentUpdated = false;
                         }
                     }
+                    catch (OutOfMemoryException exp)
+                    {
+                        ShowError("The file could not be read, because available memory is insufficient.");
+                    }
+                    catch (IOException exp)
+                    {
+                        ShowError("The file could not be read: " + exp.Message);
+                    }
                     catch (Exception exp)
                     {
                         ShowError("The file could not be read: " + exp.Message);
@@ -405,6 +418,22 @@ namespace TotaraEditor
                 this.CurrentFilePath = filePath;
                 this.IsContentUpdated = false;
                 this.status.Content = "The file has been saved successfully.";  // TODO: move it somewhere else
+            }
+            catch (PathTooLongException ex)
+            {
+                ShowError("The file could not be written because the path is too long.");
+            }
+            catch (IOException ex)
+            {
+                ShowError("The file could not be written because it is held by another process.");
+            }
+            catch (Exception ex) when (ex is UnauthorizedAccessException || ex is SecurityException)
+            {
+                ShowError("The file could not be written because your account doesn't have the permission.");
+            }
+            catch (Exception ex) when (ex is ArgumentException || ex is ArgumentNullException || ex is DirectoryNotFoundException || ex is NotSupportedException)
+            {
+                ShowError("The file could not be written because the path is invalid.");
             }
             catch (Exception exp)
             {

@@ -70,6 +70,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\TotaraApplicationCommands.cs" />
     <Page Include="AboutWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -89,9 +90,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ColorToBrushConverter.cs" />
-    <Compile Include="StringToBrushConverter.cs" />
-    <Compile Include="StringToFontFamilyConverter.cs" />
+    <Compile Include="Converters\ColorToBrushConverter.cs" />
+    <Compile Include="Converters\StringToBrushConverter.cs" />
+    <Compile Include="Converters\StringToFontFamilyConverter.cs" />
     <Compile Include="FontSetting.cs" />
     <Compile Include="FontSettingWindow.xaml.cs">
       <DependentUpon>FontSettingWindow.xaml</DependentUpon>
