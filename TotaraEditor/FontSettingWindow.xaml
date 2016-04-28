@@ -8,13 +8,10 @@
         Title="Font Settings" Height="300" Width="360" Icon="Resources/Totara_logo.png" 
         WindowStyle="ToolWindow" ResizeMode="NoResize">
     <Window.Resources>
+        <local:StringToFontFamilyConverter x:Key="FontFamilyConversions" />
         <local:ColorToBrushConverter x:Key="MenuItemColorConversions" />
         <local:StringToBrushConverter x:Key="FontColorConversions" />
-        <ObjectDataProvider 
-            ObjectInstance="{x:Type Colors}" 
-            MethodName="GetProperties" 
-            x:Key="ColorList" />
-        
+        <ObjectDataProvider ObjectInstance="{x:Type Colors}" MethodName="GetProperties" x:Key="ColorList" />
     </Window.Resources>
     
     <Grid Background="Black">
@@ -37,8 +34,14 @@
                   SelectedValue="{Binding FontFamily, Mode=TwoWay}"
                   SelectedValuePath="Source"
                   DisplayMemberPath="Source"
-                  />
-
+                  FontFamily="{Binding FontFamily, Mode=OneWay, Converter={StaticResource FontFamilyConversions}}">
+            <ComboBox.ItemContainerStyle>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="FontFamily" Value="{Binding}"/>
+                </Style>
+            </ComboBox.ItemContainerStyle>
+        </ComboBox>
+        
         <Label Grid.Column="0" Grid.Row="1" Content="Font Color" VerticalAlignment="Center"/>
 
         <ComboBox  Grid.Column="1" Grid.Row="1" Height="22" Width="240" 
