@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TotaraEditor"
         mc:Ignorable="d"
-        Title="FontSettingWindow" Height="300" Width="360" Icon="Resources/Totara_logo.png" 
+        Title="Font Settings" Height="300" Width="360" Icon="Resources/Totara_logo.png" 
         WindowStyle="ToolWindow" ResizeMode="NoResize">
     <Window.Resources>
         <local:ColorToBrushConverter x:Key="MenuItemColorConversions" />

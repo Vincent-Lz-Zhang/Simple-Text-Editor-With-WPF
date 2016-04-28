@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TotaraEditor"
         mc:Ignorable="d"
-        Title="About Totara Editor" Height="300" Width="440" Icon="Resources/Totara_logo.png"
+        Title="About Totara Notepad" Height="300" Width="440" Icon="Resources/Totara_logo.png"
         WindowStyle="ToolWindow" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
@@ -28,7 +28,7 @@
             <Image Grid.Column="0" Height="100" Width="100" Source="Resources/Totara_logo.png" VerticalAlignment="Center" />
 
             <TextBlock Foreground="#FFABABAB"  Grid.Column="1" TextWrapping="Wrap">
-                Totara Editor is developed by me, Vincent Zhang. It is based on WPF, MetroDark theme and Extended WPF Toolkit. 
+                Totara Notepad is developed by me, Vincent Zhang. It is based on WPF, MetroDark theme and Extended WPF Toolkit. 
                 <LineBreak />
                 <Hyperlink RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="http://www.infragistics.com/community/blogs/blagunas/archive/2013/05/25/free-metro-light-and-dark-themes-for-wpf-and-silverlight-microsoft-controls.aspx">MetroDark</Hyperlink>
                 is an opensource project on Git developed by infragistics, 

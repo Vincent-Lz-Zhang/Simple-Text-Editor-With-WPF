@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotaraEditor", "TotaraEditor\TotaraEditor.csproj", "{74C1E648-FDD3-4A46-9D81-E3F2DB29DAD3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TotaraNotepad", "TotaraEditor\TotaraNotepad.csproj", "{74C1E648-FDD3-4A46-9D81-E3F2DB29DAD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -14,7 +14,7 @@ namespace TotaraEditor
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly string appName = " - Totara Editor";
+        private readonly string appName = " - Totara Notepad";
         private readonly string initFileName = "Untitled";
         private bool isContentUpdated = false;
         private string currentFilePath = "";
