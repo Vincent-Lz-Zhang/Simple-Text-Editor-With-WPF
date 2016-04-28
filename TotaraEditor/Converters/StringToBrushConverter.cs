@@ -8,10 +8,14 @@ namespace TotaraEditor
         public object Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             BrushConverter conv = new BrushConverter();
-            SolidColorBrush brush = conv.ConvertFromString(FontSetting.DEFAULT_FONT_COLOR) as SolidColorBrush;
+            SolidColorBrush brush = (SolidColorBrush)conv.ConvertFromString(FontSetting.DEFAULT_FONT_COLOR);
             if (null != value)
             {
-                brush = conv.ConvertFromString(value.ToString()) as SolidColorBrush;
+                SolidColorBrush temp = conv.ConvertFromString(value.ToString()) as SolidColorBrush;
+                if (null != temp)
+                {
+                    brush = temp;
+                }
             }
             return brush;
         }

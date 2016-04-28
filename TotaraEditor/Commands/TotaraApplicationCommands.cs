@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Input;
-using System.Windows.Data;
-using System.Windows.Controls;
+﻿using System.Windows.Input;
 
 namespace TotaraEditor
 {

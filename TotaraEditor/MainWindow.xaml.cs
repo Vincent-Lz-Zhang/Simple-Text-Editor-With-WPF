@@ -126,7 +126,7 @@ namespace TotaraEditor
                 }
                 else
                 {
-                    ShowError("I believe something goes wrong. You may need to restart Totara Editor.");
+                    this.ShowError("I believe something goes wrong. You may need to restart Totara Editor.");
                 }
             }
             else
@@ -169,7 +169,7 @@ namespace TotaraEditor
                 }
                 else
                 {
-                    ShowError("I believe something goes wrong. You may need to restart Totara Editor.");
+                    this.ShowError("I believe something goes wrong. You may need to restart Totara Editor.");
                 }
             }
             else
@@ -265,29 +265,29 @@ namespace TotaraEditor
                         }
                         catch (PathTooLongException ex)
                         {
-                            ShowError("The file could not be deleted because the path is too long.");
+                            this.ShowError("The file could not be deleted because the path is too long.");
                         }
                         catch (UnauthorizedAccessException ex)
                         {
-                            ShowError("The file could not be deleted because your account doesn't have the permission.");
+                            this.ShowError("The file could not be deleted because your account doesn't have the permission.");
                         }
                         catch (IOException ex)
                         {
-                            ShowError("The file could not be deleted because it is held by another process.");
+                            this.ShowError("The file could not be deleted because it is held by another process.");
                         }
                         catch (Exception ex) when (ex is ArgumentException || ex is ArgumentNullException || ex is DirectoryNotFoundException || ex is NotSupportedException)
                         {
-                            ShowError("The file could not be deleted because the path is invalid.");
+                            this.ShowError("The file could not be deleted because the path is invalid.");
                         }
                         catch (Exception ex)
                         {
-                            ShowError("The file could not be deleted. " + ex.Message);
+                            this.ShowError("The file could not be deleted. " + ex.Message);
                         }
                     }
                 }
                 else
                 {
-                    ShowError("I believe something goes wrong. You may need to restart Totara Editor.");
+                    this.ShowError("I believe something goes wrong. You may need to restart Totara Editor.");
                 }
             }
         }
@@ -295,11 +295,6 @@ namespace TotaraEditor
         private void Quit_Executed(object sender, ExecutedRoutedEventArgs evt)
         {
             this.ConfirmQuit(sender, evt);
-        }
-
-        private void Quit_MenuItem_Click(object sender, RoutedEventArgs evt)
-        {
-            
         }
 
         private void Format_MenuItem_Click(object sender, RoutedEventArgs evt)
@@ -314,7 +309,7 @@ namespace TotaraEditor
 
         private void About_MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var aboutWin = new AboutWindow();
+            AboutWindow aboutWin = new AboutWindow();
             aboutWin.ShowDialog();
         }
 
@@ -367,15 +362,15 @@ namespace TotaraEditor
                     }
                     catch (OutOfMemoryException exp)
                     {
-                        ShowError("The file could not be read, because available memory is insufficient.");
+                        this.ShowError("The file could not be read, because available memory is insufficient.");
                     }
                     catch (IOException exp)
                     {
-                        ShowError("The file could not be read: " + exp.Message);
+                        this.ShowError("The file could not be read: " + exp.Message);
                     }
                     catch (Exception exp)
                     {
-                        ShowError("The file could not be read: " + exp.Message);
+                        this.ShowError("The file could not be read: " + exp.Message);
                     }
                 }
             }
@@ -421,23 +416,23 @@ namespace TotaraEditor
             }
             catch (PathTooLongException ex)
             {
-                ShowError("The file could not be written because the path is too long.");
+                this.ShowError("The file could not be written because the path is too long.");
             }
             catch (IOException ex)
             {
-                ShowError("The file could not be written because it is held by another process.");
+                this.ShowError("The file could not be written because it is held by another process.");
             }
             catch (Exception ex) when (ex is UnauthorizedAccessException || ex is SecurityException)
             {
-                ShowError("The file could not be written because your account doesn't have the permission.");
+                this.ShowError("The file could not be written because your account doesn't have the permission.");
             }
             catch (Exception ex) when (ex is ArgumentException || ex is ArgumentNullException || ex is DirectoryNotFoundException || ex is NotSupportedException)
             {
-                ShowError("The file could not be written because the path is invalid.");
+                this.ShowError("The file could not be written because the path is invalid.");
             }
             catch (Exception exp)
             {
-                ShowError("The file could not be written: " + exp.Message);
+                this.ShowError("The file could not be written: " + exp.Message);
             }
         }
 
@@ -467,7 +462,7 @@ namespace TotaraEditor
                 }
                 else
                 {
-                    ShowError("I believe something goes wrong. You may need to restart Totara Editor.");
+                    this.ShowError("I believe something goes wrong. You may need to restart Totara Editor.");
                 }
             }
             else

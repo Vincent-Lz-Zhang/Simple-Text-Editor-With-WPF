@@ -31,8 +31,8 @@
                 Totara Editor is developed by me, Vincent Zhang. It is based on WPF, MetroDark theme and Extended WPF Toolkit. 
                 <LineBreak />
                 <Hyperlink RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="http://www.infragistics.com/community/blogs/blagunas/archive/2013/05/25/free-metro-light-and-dark-themes-for-wpf-and-silverlight-microsoft-controls.aspx">MetroDark</Hyperlink>
-                is an opensource project on git developed by infragistics, 
-                unfortunately it doesn't have style for menu and menu item. 
+                is an opensource project on Git developed by infragistics, 
+                unfortunately it doesn't have style for menu or menu item. 
                 <LineBreak />
                 <Hyperlink RequestNavigate="Hyperlink_RequestNavigate" NavigateUri="http://wpftoolkit.codeplex.com/">Extended WPF Toolkit</Hyperlink>
                 is an opensource project on CodePlex, originally it was integrated into this project in order to have a style-customizable message box,

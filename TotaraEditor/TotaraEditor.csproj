@@ -93,7 +93,7 @@
     <Compile Include="Converters\ColorToBrushConverter.cs" />
     <Compile Include="Converters\StringToBrushConverter.cs" />
     <Compile Include="Converters\StringToFontFamilyConverter.cs" />
-    <Compile Include="FontSetting.cs" />
+    <Compile Include="ViewModels\FontSetting.cs" />
     <Compile Include="FontSettingWindow.xaml.cs">
       <DependentUpon>FontSettingWindow.xaml</DependentUpon>
     </Compile>
