@@ -18,7 +18,7 @@ It is a simple text editor, which I designed for one assignment during my gradua
 
 ![N|Solid](https://zlxadhkust.files.wordpress.com/2017/07/untitled1.png)
 
-![N|Solid](https://zlxadhkust.files.wordpress.com/2017/07/font-color1.png)
+![N|Solid](https://zlxadhkust.files.wordpress.com/2017/07/font-setting1.png)
 
 ![N|Solid](https://zlxadhkust.files.wordpress.com/2017/07/font-fam1.png)
 
