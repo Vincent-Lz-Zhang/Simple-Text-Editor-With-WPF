@@ -1,4 +1,4 @@
-# Otara Notepad
+# Totara Notepad
 
 It is a simple text editor, which I designed for one assignment during my graduate diploma study in Auckland.
 
